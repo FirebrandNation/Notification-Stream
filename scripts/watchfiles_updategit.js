@@ -11,7 +11,7 @@ let changesCounter = 0;
 
 // Initialize watcher.
 var watcher = chokidar.watch('file, dir, glob, or array', {
-  ignored: /(^|[\/\\])\../,
+  ignored: /(^|[\/\\])\../,'.git',
   persistent: true
 });
  
@@ -63,6 +63,7 @@ watcher.on('change', (path, stats) => {
  //watcher.close();
  
 // Full list of options. See below for descriptions. (do not use this example)
+/*
 chokidar.watch('file', {
   persistent: true,
   ignored: '.git',
@@ -82,6 +83,6 @@ chokidar.watch('file', {
   ignorePermissionErrors: false,
   atomic: true // or a custom 'atomicity delay', in milliseconds (default 100)
 });
- 
+ */
 
 console.log(`running filewatcher `);
