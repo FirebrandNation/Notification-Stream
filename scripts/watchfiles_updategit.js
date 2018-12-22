@@ -65,7 +65,7 @@ watcher.on('change', (path, stats) => {
 // Full list of options. See below for descriptions. (do not use this example)
 chokidar.watch('file', {
   persistent: true,
-  ignored: '*.txt',
+  ignored: '.git',
   ignoreInitial: false,
   followSymlinks: true,
   cwd: '.',
