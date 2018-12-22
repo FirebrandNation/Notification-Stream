@@ -11,7 +11,7 @@ let changesCounter = 0;
 
 // Initialize watcher.
 var watcher = chokidar.watch('file, dir, glob, or array', {
-  ignored: /(^|[\/\\])\..\..git/,
+  ignored: ['*.txt', '*.log','.git'],///(^|[\/\\])\..\..git/,
   persistent: true
 });
  
@@ -31,14 +31,17 @@ watcher
   .on('ready', () => log('Initial scan complete. Ready for changes'))
   .on('raw', (event, path, details) => {
     log('Raw event info:', event, path, details);
-    log('Git Update required');
 
     changesCounter++;
 
-    runGitPush()
+
+   log(changesCounter);
 
     if (changesCounter > 10) {
+    	    runGitPush()
 
+    	log('Git Update required');
+    	changesCounter = 0;
     }
   });
  
