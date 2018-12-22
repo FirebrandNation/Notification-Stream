@@ -11,7 +11,7 @@ let changesCounter = 0;
 
 // Initialize watcher.
 var watcher = chokidar.watch('file, dir, glob, or array', {
-  ignored: /(^|[\/\\])\../,'.git',
+  ignored: /(^|[\/\\])\..\..git/,
   persistent: true
 });
  
