@@ -4,7 +4,7 @@
 const chokidar = require('chokidar');
 
 //require github assistant module
-require('./git-push.js');
+var runGitPush = require('./git-push.js');
 
 //After every 10changes - push them to github
 let changesCounter = 0;
@@ -34,6 +34,8 @@ watcher
     log('Git Update required');
 
     changesCounter++;
+
+    runGitPush()
 
     if (changesCounter > 10) {
 
