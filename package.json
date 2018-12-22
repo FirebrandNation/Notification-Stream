@@ -1,0 +1,38 @@
+{
+  "name": "notification-stream",
+  "version": "1.0.0",
+  "description": "A custom solution for firebrandnation.com to aid in notifications and content aggregation",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaggieBlanqx/Notification-Stream.git"
+  },
+  "keywords": [
+    "FirebrandNation",
+    "DaggieBlanqx",
+    "Daggie",
+    "Blanqx",
+    "Jesus",
+    "Is",
+    "Alive",
+    "Ministries",
+    "Church",
+    "Technology",
+    "Evans",
+    "Kariuki"
+  ],
+  "author": "DaggieBlanqx",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/DaggieBlanqx/Notification-Stream/issues"
+  },
+  "homepage": "https://github.com/DaggieBlanqx/Notification-Stream#readme",
+  "devDependencies": {
+    "chokidar": "^2.0.4",
+    "dotenv": "^6.2.0",
+    "simple-git": "^1.107.0"
+  }
+}
