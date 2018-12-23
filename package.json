@@ -4,7 +4,11 @@
   "description": "A custom solution for firebrandnation.com to aid in notifications and content aggregation",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cron": "node cron.js",
+    "server": "node app.js",
+    "start": "concurrently \"npm run cron \" \"npm run server\""
+
   },
   "repository": {
     "type": "git",
@@ -32,7 +36,11 @@
   "homepage": "https://github.com/DaggieBlanqx/Notification-Stream#readme",
   "devDependencies": {
     "chokidar": "^2.0.4",
+    "concurrently": "^4.1.0",
     "dotenv": "^6.2.0",
     "simple-git": "^1.107.0"
+  },
+  "dependencies": {
+    "wpapi": "^1.1.2"
   }
 }
