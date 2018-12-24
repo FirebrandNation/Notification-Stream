@@ -35,12 +35,11 @@ watcher
     changesCounter++;
 
 
-   log(changesCounter);
+   log(`Git edits remaining before a commit : ${20 - parseInt(changesCounter)}`);
 
     if (changesCounter > 10) {
-    	    runGitPush()
-
-    	log('Git Update required');
+      log('Git Update required >>>>>> commit now in progress ');
+      runGitPush();
     	changesCounter = 0;
     }
   });

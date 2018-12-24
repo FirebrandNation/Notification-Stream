@@ -1,48 +1,85 @@
 "use strict"
 
-const WPAPI = require( 'wpapi' );
+require('dotenv').config();
 
+const WPAPI = require('wpapi');
 
+class BlogSite {
 
-class BlogPost{
-	constructor(endpoint,username,password){
-		//const wp = new WPAPI({
-	this.endpoint = endpoint;//'https://blogs.firebrandnation.com/wp-json',
-	this.username = username ;//'daggieblanqx',
-    this.password = password ;//'83qV9HC5JJ8FrcV'
-//});
+	constructor(endpoint,username,password) {
+		this.wp = new WPAPI({
+			endpoint: endpoint,
+			username: username,
+			password: password
+		});
 
 	}
 
-	wp(){
-		return new WPAPI({
-			endpoint : this.endpoint,
-			username : this.username,
-			password : this.password
+	//get all blogPosts
+	getAll_blogPosts(){
+		return new Promise((resolve, reject) => {
+			this.wp.posts().then(function (data) {
+				resolve(data);
+			}).catch(function (err) {
+				reject(err);
+			});
+		});
+	};
+
+	//get a specific blogPost
+	getA_blogPost(postID){
+		return new Promise((resolve, reject) => {
+			this.wp.posts().id(postID)
+				.then((data) => {
+					resolve(data);
+				})
+				.catch((err) => {
+					reject(err);
+				});
+		});
+	};
+
+	//create a new blogPost
+	createBlogPost(title, content, authorID, postingStatus){
+		return new Promise((resolve, reject) => {
+			this.wp.posts().create({
+				title: title,
+				content: content,
+				author: authorID,
+				status: postingStatus || 'publish'
+			}).then((response) => {
+				resolve(response);
+			}).catch((err) => {
+				reject(err);
+			});
 		})
+	};
 
-		//return wp;
-	}
 
-	create(){
-		this.wp.posts().create({
-    // "title" and "content" are the only required properties
-    title: '[TEST]Your Post Title',
-    content: '[CONTENT] Your post content',
-    author:2,
-    // Post will be created as a draft by default if a specific "status"
-    // is not specified
-    status: 'publish'
-}).then(function( response ) {
-    // "response" will hold all properties of your newly-created post,
-    // including the unique `id` the post was assigned on creation
-    console.log( response.id );
-}).catch((err)=>{
-	console.log(`err : ${JSON.stringify(err)}`);
-})
-	}
+
 }
 
-var bp = new BlogPost('https://blogs.firebrandnation.com/wp-json','daggieblanqx','83qV9HC5JJ8FrcV');
+const FN = new BlogSite(process.env.BlogsFNendpoint , process.env.BlogsFNuname , process.env.BlogsFNpwd);
+const JIAM = new BlogSite(process.env.BlogsJIAMendpoint , process.env.BlogsJIAMuname , process.env.BlogsJIAMpwd);
+//const FSM = new BlogSite(process.env.BlogsFSMendpoint , process.env.BlogsFSMuname , process.env.BlogsFSMpwd);
+//const FNSTORE = new BlogSite(process.env.BlogsFNSTOREendpoint , process.env.BlogsFNSTOREuname , process.env.BlogsFNSTOREpwd);
 
-bp.create()
+FN.getAll_blogPosts()
+.then((data)=>{
+	console.log(data.length)
+	
+	data.map((x,i)=>{
+		//title, content, authorID, postingStatus
+		console.log(`${i+1} : ${x.title.rendered}`);
+		JIAM.createBlogPost(x.title.rendered,x.content.rendered)
+		.then((response)=>{
+		//console.log(response)
+		})
+		.catch((err)=>{
+		//console.log(err)
+		})
+	}) 
+})
+.catch((err)=>{
+	console.log(err)
+})
