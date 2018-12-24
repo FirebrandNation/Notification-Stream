@@ -61,6 +61,7 @@ class BlogSite {
 
 const FN = new BlogSite(process.env.BlogsFNendpoint , process.env.BlogsFNuname , process.env.BlogsFNpwd);
 const JIAM = new BlogSite(process.env.BlogsJIAMendpoint , process.env.BlogsJIAMuname , process.env.BlogsJIAMpwd);
+const USAJIAM = new BlogSite(process.env.BlogsUSAJIAMendpoint , process.env.BlogsUSAJIAMuname , process.env.BlogsUSAJIAMpwd);
 //const FSM = new BlogSite(process.env.BlogsFSMendpoint , process.env.BlogsFSMuname , process.env.BlogsFSMpwd);
 //const FNSTORE = new BlogSite(process.env.BlogsFNSTOREendpoint , process.env.BlogsFNSTOREuname , process.env.BlogsFNSTOREpwd);
 
@@ -71,7 +72,7 @@ FN.getAll_blogPosts()
 	data.map((x,i)=>{
 		//title, content, authorID, postingStatus
 		console.log(`${i+1} : ${x.title.rendered}`);
-		JIAM.createBlogPost(x.title.rendered,x.content.rendered)
+		USAJIAM.createBlogPost(x.title.rendered,x.content.rendered)
 		.then((response)=>{
 		//console.log(response)
 		})
@@ -81,5 +82,7 @@ FN.getAll_blogPosts()
 	}) 
 })
 .catch((err)=>{
-	console.log(err)
+	console.log(err);
 })
+
+
