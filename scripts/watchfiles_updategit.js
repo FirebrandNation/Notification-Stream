@@ -11,7 +11,7 @@ let changesCounter = 0;
 
 // Initialize watcher.
 var watcher = chokidar.watch('file, dir, glob, or array', {
-  ignored: ['*.txt', '*.log','.te'],///(^|[\/\\])\..\..git/,
+  ignored: ['*.txt', '*.log','.git','.env','.git/'],///(^|[\/\\])\..\..git/,
   persistent: true
 });
  
@@ -35,12 +35,11 @@ watcher
     changesCounter++;
 
 
-   log(changesCounter);
+   log(`Git edits remaining before a commit : ${20 - parseInt(changesCounter)}`);
 
     if (changesCounter > 10) {
-    	    runGitPush()
-
-    	log('Git Update required');
+      log('Git Update required >>>>>> commit now in progress ');
+      runGitPush();
     	changesCounter = 0;
     }
   });

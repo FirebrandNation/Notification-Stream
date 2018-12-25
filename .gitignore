@@ -56,3 +56,5 @@ cmake_install.cmake
 
 #private files
 .env
+.instructions
+.heroku-env
