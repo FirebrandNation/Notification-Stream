@@ -1,12 +1,11 @@
 {
   "name": "notification-stream",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A custom solution for firebrandnation.com to aid in notifications and content aggregation",
-  "main": "app.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cls && nodemon ./bin/www",
     "cron": "node cron.js",
-    "server": "nodemon app.js",
     "startDev": "cls && concurrently \"npm run cron \" \"npm run server\""
   },
   "repository": {
@@ -33,14 +32,19 @@
     "url": "https://github.com/DaggieBlanqx/Notification-Stream/issues"
   },
   "homepage": "https://github.com/DaggieBlanqx/Notification-Stream#readme",
-  "devDependencies": {
-    "chokidar": "^2.0.4",
-    "concurrently": "^4.1.0",
-    "dotenv": "^6.2.0",
-    "simple-git": "^1.107.0"
-  },
   "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
     "wpapi": "^1.1.2",
     "dotenv": "^6.2.0"
+  },
+  "devDependencies": {
+    "chokidar": "^2.0.4",
+    "simple-git": "^1.107.0",
+    "concurrently": "^4.1.0"
   }
 }

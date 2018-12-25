@@ -65,24 +65,10 @@ const USAJIAM = new BlogSite(process.env.BlogsUSAJIAMendpoint , process.env.Blog
 //const FSM = new BlogSite(process.env.BlogsFSMendpoint , process.env.BlogsFSMuname , process.env.BlogsFSMpwd);
 //const FNSTORE = new BlogSite(process.env.BlogsFNSTOREendpoint , process.env.BlogsFNSTOREuname , process.env.BlogsFNSTOREpwd);
 
-FN.getAll_blogPosts()
-.then((data)=>{
-	console.log(data.length)
-	
-	data.map((x,i)=>{
-		//title, content, authorID, postingStatus
-		console.log(`${i+1} : ${x.title.rendered}`);
-		USAJIAM.createBlogPost(x.title.rendered,x.content.rendered)
-		.then((response)=>{
-		//console.log(response)
-		})
-		.catch((err)=>{
-		//console.log(err)
-		})
-	}) 
-})
-.catch((err)=>{
-	console.log(err);
-})
+module.exports = {
+	FN,
+	JIAM,
+	USAJIAM
+}
 
 
